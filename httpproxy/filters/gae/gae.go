@@ -33,6 +33,7 @@ type Config struct {
 	DisableHTTP2    bool
 	ForceHTTP2      bool
 	EnableDeadProbe bool
+	EnableRemoteDNS bool
 	Sites           []string
 	Site2Alias      map[string]string
 	HostMap         map[string][]string
@@ -192,6 +193,7 @@ func NewFilter(config *Config) (filters.Filter, error) {
 		},
 		ForceIPv6:         config.ForceIPv6,
 		SSLVerify:         config.SSLVerify,
+		EnableRemoteDNS:   config.EnableRemoteDNS,
 		TLSConfig:         nil,
 		Site2Alias:        helpers.NewHostMatcherWithString(config.Site2Alias),
 		IPBlackList:       lrucache.NewLRUCache(8192),
